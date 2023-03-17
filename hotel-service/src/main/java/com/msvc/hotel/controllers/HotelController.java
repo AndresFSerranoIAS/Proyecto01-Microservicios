@@ -21,7 +21,7 @@ public class HotelController {
         return ResponseEntity.status(HttpStatus.CREATED).body(hotelService.createHotel(hotel));
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Hotel>> listarHoteles(){
         return ResponseEntity.status(HttpStatus.OK).body(hotelService.getAll());
     }
