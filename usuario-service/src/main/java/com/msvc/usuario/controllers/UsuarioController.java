@@ -1,5 +1,6 @@
 package com.msvc.usuario.controllers;
 
+import com.msvc.usuario.entities.Calificacion;
 import com.msvc.usuario.entities.Usuario;
 import com.msvc.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
