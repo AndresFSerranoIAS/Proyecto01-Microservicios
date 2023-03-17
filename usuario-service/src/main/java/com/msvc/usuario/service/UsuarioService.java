@@ -12,4 +12,6 @@ public interface UsuarioService {
 
     Usuario getUsuario(String usuarioId);
 
+    void deleteCalificacionByCalificacionID(String calificacionId);
+
 }

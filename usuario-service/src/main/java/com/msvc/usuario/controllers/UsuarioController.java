@@ -33,5 +33,10 @@ public class UsuarioController {
         List<Usuario> usuarios = usuarioService.getAllUsuarios();
         return ResponseEntity.ok(usuarios);
     }
+    @DeleteMapping("/{calificacionId}")
+    public ResponseEntity<String>deleteCaliciacion(@PathVariable String  calificacionId){
+        usuarioService.deleteCalificacionByCalificacionID(calificacionId);
+        return ResponseEntity.ok("Se ha borrado la calificación con ID "+ calificacionId);
+    }
 
 }

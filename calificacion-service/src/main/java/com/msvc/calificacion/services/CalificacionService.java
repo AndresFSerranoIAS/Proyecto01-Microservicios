@@ -11,5 +11,9 @@ public interface CalificacionService {
     List<Calificacion> getCalificacionesByUsuarioId(String usuarioId);
     List<Calificacion> getCalificacionesByHotelId(String hotelId);
 
+    void eleminarCalificacionById(String calificacionId);
+
+    Calificacion actualizarCalificacion(Calificacion calificacion, String calificacionId);
+
 
 }

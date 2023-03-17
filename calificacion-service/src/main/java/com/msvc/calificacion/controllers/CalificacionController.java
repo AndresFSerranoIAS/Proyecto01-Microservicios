@@ -35,5 +35,17 @@ public class CalificacionController {
     public ResponseEntity<List<Calificacion>> listarCalificacionesPorHotelId(@PathVariable String hotelId){
         return ResponseEntity.ok(calificacionService.getCalificacionesByHotelId(hotelId));
     }
-
+    @DeleteMapping("/{calificacionId}")
+    public ResponseEntity<String> eliminarCalificacionPorCalificacionId(@PathVariable String calificacionId){
+        calificacionService.eleminarCalificacionById(calificacionId);
+        return ResponseEntity.ok("Se ha eliminado la calificacion con el ID " + calificacionId);
+    }
+    @PutMapping("/{calificacionId}")
+    public ResponseEntity<?> actualizarCalificacionPorCalificacionId(@PathVariable String calificacionId, @RequestBody Calificacion calificacionRequest) {
+        try{
+            return ResponseEntity.ok(calificacionService.actualizarCalificacion(calificacionRequest,calificacionId));
+        }catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 }

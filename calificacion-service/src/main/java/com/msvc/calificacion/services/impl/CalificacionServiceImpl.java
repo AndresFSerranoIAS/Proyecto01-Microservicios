@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CalificacionServiceImpl implements CalificacionService {
@@ -33,5 +34,25 @@ public class CalificacionServiceImpl implements CalificacionService {
     @Override
     public List<Calificacion> getCalificacionesByHotelId(String hotelId) {
         return calificacionRepository.findByHotelId(hotelId);
+    }
+
+    @Override
+    public void eleminarCalificacionById(String calificacionId) {
+        calificacionRepository.deleteById(calificacionId);
+    }
+
+    @Override
+    public Calificacion actualizarCalificacion(Calificacion calificacionRequest, String calificacionId) {
+        Optional<Calificacion> existentCalificacion = calificacionRepository.findById(calificacionId);
+        if(existentCalificacion.isPresent()){
+            Calificacion updatedCalificacion = new Calificacion(existentCalificacion.get().getCalificacionId(),
+                    calificacionRequest.getUsuarioId(),
+                    calificacionRequest.getHotelId(),
+                    calificacionRequest.getCalificacion(),
+                    calificacionRequest.getObservaciones());
+            return calificacionRepository.save(updatedCalificacion);
+        }
+        throw new RuntimeException("No se ha encontrado la calificación");
+
     }
 }
